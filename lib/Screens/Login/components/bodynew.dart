@@ -4,6 +4,10 @@ import 'package:propertygram_2021/Screens/Welcome/welcome_screen.dart';
 import 'package:propertygram_2021/constants.dart';
 import 'package:propertygram_2021/components/text_field_container.dart';
 
+import 'package:propertygram_2021/Screens/Signup/signup_screen.dart';
+import 'package:propertygram_2021/components/already_have_an_account_acheck.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
@@ -46,7 +50,7 @@ class _LoginState extends State<Login> {
               TextFieldContainer(
                 child: TextFormField(
                   controller: _email,
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.text,
                   cursorColor: kPrimaryColor,
                   decoration: InputDecoration(
                     icon: Icon(
@@ -119,6 +123,19 @@ class _LoginState extends State<Login> {
                   child: Text("Submit"),
                 ),
               ),
+              SizedBox(height: size.height * 0.03),
+              AlreadyHaveAnAccountCheck(
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SignUpScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -126,7 +143,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-  signIn(String email, password) async {
+  signIn(String _email, _password) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map data = {'email': _email, 'password': _password};
     var jsonResponse = null;

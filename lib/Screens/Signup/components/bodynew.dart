@@ -71,7 +71,7 @@ class _SignUpState extends State<SignUp> {
               TextFieldContainer(
                 child: TextFormField(
                   controller: _email,
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.text,
                   cursorColor: kPrimaryColor,
                   decoration: InputDecoration(
                     icon: Icon(
